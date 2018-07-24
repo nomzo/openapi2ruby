@@ -54,7 +54,14 @@ module Openapi2ruby
         else
           [Object.const_get(@type.capitalize)]
         end
-      when 'string', 'array'
+      when 'string'
+        case @format
+        when 'date', 'date-time'
+          [Object.const_get(@format.split("-").map(&:capitalize).join)]
+        else
+          [Object.const_get(@type.capitalize)]
+        end
+      when 'array'
         [Object.const_get(@type.capitalize)]
       when 'number'
         [Float]
