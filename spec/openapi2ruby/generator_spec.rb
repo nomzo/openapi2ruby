@@ -8,7 +8,13 @@ RSpec.describe Openapi2ruby::Generator do
 
   describe '#generate' do
     let(:generated_file) { "#{output_path}/pet_serializer.rb" }
-    let(:file_fixture) { 'spec/fixtures/files/pet_serializer.rb' }
+    let(:file_fixture) {
+      if Gem::Version.new(RUBY_VERSION) < Gem::Version.new('2.4.0')
+        'spec/fixtures/files/pet_serializer_under_2_4.rb'
+      else
+        'spec/fixtures/files/pet_serializer.rb'
+      end
+    }
 
     before { generator.generate(output_path, nil) }
 

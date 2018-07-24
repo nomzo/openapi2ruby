@@ -51,6 +51,14 @@ RSpec.describe Openapi2ruby::Openapi::Schema::Property do
   describe '#types' do
     subject { properties.first.types }
 
-    it { is_expected.to eq [Integer] }
+    let(:type) {
+      if Gem::Version.new(RUBY_VERSION) < Gem::Version.new('2.4.0')
+        Fixnum
+      else
+        Integer
+      end
+    }
+
+    it { is_expected.to eq [type] }
   end
 end

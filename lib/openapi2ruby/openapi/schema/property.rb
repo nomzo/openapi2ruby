@@ -49,7 +49,7 @@ module Openapi2ruby
     def converted_types
       case @type
       when 'integer'
-        if Gem::Version.new(RUBY_VERSION) < Gem::Version.new('2.3.0')
+        if Gem::Version.new(RUBY_VERSION) < Gem::Version.new('2.4.0')
           [Object.const_get('Fixnum')]
         else
           [Object.const_get(@type.capitalize)]
