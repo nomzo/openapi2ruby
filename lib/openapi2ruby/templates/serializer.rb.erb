@@ -20,7 +20,7 @@ class <%= @schema.name %>Serializer < ActiveModel::Serializer
     required_check(<%= ":#{p.name}" %>)
     <%- end %>
     type_check(<%= ":#{p.name}, #{p.types}" -%>)
-    object.<%=- p.name %>
+    object.<%= p.name %>
   end
   <%- end %>
   private

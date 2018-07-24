@@ -48,7 +48,13 @@ module Openapi2ruby
     # @return [Array[Class]]
     def converted_types
       case @type
-      when 'string', 'integer', 'array'
+      when 'integer'
+        if Gem::Version.new(RUBY_VERSION) < Gem::Version.new('2.3.0')
+          [Object.const_get('Fixnum')]
+        else
+          [Object.const_get(@type.capitalize)]
+        end
+      when 'string', 'array'
         [Object.const_get(@type.capitalize)]
       when 'number'
         [Float]
