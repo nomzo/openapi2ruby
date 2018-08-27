@@ -56,8 +56,10 @@ module Openapi2ruby
         end
       when 'string'
         case @format
-        when 'date', 'date-time'
-          [Object.const_get(@format.split("-").map(&:capitalize).join)]
+        when 'date'
+          [Object.const_get(@format.capitalize)]
+        when 'date-time'
+          [Object.const_get(@format.split("-").map(&:capitalize).join), Time]
         else
           [Object.const_get(@type.capitalize)]
         end
