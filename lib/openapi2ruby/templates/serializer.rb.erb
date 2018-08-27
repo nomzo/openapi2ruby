@@ -30,6 +30,7 @@ class <%= @schema.name %>Serializer < ActiveModel::Serializer
   end
   <%- end %>
   def type_check(name, types)
+    return if object.send(name).nil?
     raise "Field type is invalid. #{name}" unless types.include?(object.send(name).class)
   end
 end
