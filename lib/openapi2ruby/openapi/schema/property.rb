@@ -59,7 +59,7 @@ module Openapi2ruby
         when 'date'
           [Object.const_get(@format.capitalize)]
         when 'date-time'
-          [Object.const_get(@format.split("-").map(&:capitalize).join), Time]
+          [Object.const_get(@format.split("-").map(&:capitalize).join), Time, ActiveSupport::TimeWithZone]
         else
           [Object.const_get(@type.capitalize)]
         end
