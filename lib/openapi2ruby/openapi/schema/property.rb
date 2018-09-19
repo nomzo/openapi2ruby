@@ -1,3 +1,5 @@
+require 'active_support/core_ext/time/zones'
+
 module Openapi2ruby
   class Openapi::Schema::Property
     attr_reader :name
